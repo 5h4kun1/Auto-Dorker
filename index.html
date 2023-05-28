@@ -1,1 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auto-Dorker Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select {
+            padding: 8px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Auto-Dorker Webpage</h1>
+
+        <form id="dorkForm">
+            <label for="website">Enter Website:</label>
+            <input type="text" id="website" name="website" required>
+
+            <label for="dorkSelection">Dork Selection:</label>
+            <select id="dorkSelection" name="dorkSelection" required>
+                <option value="github">GitHub</option>
+                <option value="google">Google</option>
+                <option value="both">Both</option>
+            </select>
+
+            <input type="submit" value="Run Auto-Dorker">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('dorkForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var website = document.getElementById('website').value;
+            var dorkSelection = document.getElementById('dorkSelection').value;
+
+            var url = '/api/run-dorker?website=' + encodeURIComponent(website) + '&dorkSelection=' + encodeURIComponent(dorkSelection);
+
+            fetch(url)
+                .then(function(response) {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('Error: ' + response.status);
+                    }
+                })
+                .then(function(data) {
+                    // Process the data or display a success message
+                    alert('Auto-Dorker completed successfully!');
+                    console.log(data);
+                })
+                .catch(function(error) {
+                    // Display an error message
+                    alert('Error: ' + error.message);
+                });
+        });
+    </script>
+
+    <footer>
+        <p>MADE with 🖤 by Suman</p>
+    </footer>
+</body>
+</html>
 
