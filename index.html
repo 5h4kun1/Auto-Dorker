@@ -1,9 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Website</title>
+    <title>Auto-Dorker Webpage</title>
 </head>
 <body>
-  <h1>Hello, World!</h1>
+    <h1>Auto-Dorker Webpage</h1>
+
+    <form id="dorkForm">
+        <label for="website">Enter Website:</label>
+        <input type="text" id="website" name="website" required><br>
+
+        <label for="dorkSelection">Dork Selection:</label>
+        <select id="dorkSelection" name="dorkSelection" required>
+            <option value="1">GitHub</option>
+            <option value="2">Google</option>
+            <option value="3">Both</option>
+        </select><br>
+
+        <input type="submit" value="Run Auto-Dorker">
+    </form>
+
+    <script>
+        document.getElementById('dorkForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var website = document.getElementById('website').value;
+            var dorkSelection = document.getElementById('dorkSelection').value;
+            
+            var url = '/run-dorker?website=' + encodeURIComponent(website) + '&dorkSelection=' + encodeURIComponent(dorkSelection);
+
+            fetch(url)
+                .then(function(response) {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('Error: ' + response.status);
+                    }
+                })
+                .then(function(data) {
+                    // Process the data or display a success message
+                    alert('Auto-Dorker completed successfully!');
+                    console.log(data);
+                })
+                .catch(function(error) {
+                    // Display an error message
+                    alert('Error: ' + error.message);
+                });
+        });
+    </script>
 </body>
 </html>
