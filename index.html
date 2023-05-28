@@ -88,9 +88,9 @@
 
             <label for="dorkSelection">Dork Selection:</label>
             <select id="dorkSelection" name="dorkSelection" required>
-                <option value="1">GitHub</option>
-                <option value="2">Google</option>
-                <option value="3">Both</option>
+                <option value="github">GitHub</option>
+                <option value="google">Google</option>
+                <option value="both">Both</option>
             </select>
 
             <input type="submit" value="Run Auto-Dorker">
@@ -102,7 +102,7 @@
             event.preventDefault();
             var website = document.getElementById('website').value;
             var dorkSelection = document.getElementById('dorkSelection').value;
-            
+
             var url = '/api/run-dorker?website=' + encodeURIComponent(website) + '&dorkSelection=' + encodeURIComponent(dorkSelection);
 
             fetch(url)
