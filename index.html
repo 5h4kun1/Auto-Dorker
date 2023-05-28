@@ -7,7 +7,7 @@
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,47 +17,64 @@
         .container {
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            max-width: 400px;
-            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         h1 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 20px;
             text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
         }
 
         label {
-            color: #666;
-            display: block;
-            font-size: 16px;
             margin-bottom: 10px;
+            font-weight: bold;
         }
 
         input[type="text"],
         select {
+            padding: 8px;
+            width: 300px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            padding: 10px;
-            width: 100%;
+            font-size: 14px;
         }
 
         input[type="submit"] {
-            background-color: #333;
+            padding: 10px 20px;
+            background-color: #4caf50;
             border: none;
-            border-radius: 4px;
             color: #fff;
-            cursor: pointer;
             font-size: 16px;
-            padding: 12px;
-            width: 100%;
+            cursor: pointer;
         }
 
         input[type="submit"]:hover {
-            background-color: #555;
+            background-color: #45a049;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -86,7 +103,7 @@
             var website = document.getElementById('website').value;
             var dorkSelection = document.getElementById('dorkSelection').value;
             
-            var url = '/run-dorker?website=' + encodeURIComponent(website) + '&dorkSelection=' + encodeURIComponent(dorkSelection);
+            var url = '/api/run-dorker?website=' + encodeURIComponent(website) + '&dorkSelection=' + encodeURIComponent(dorkSelection);
 
             fetch(url)
                 .then(function(response) {
@@ -107,5 +124,9 @@
                 });
         });
     </script>
+
+    <footer>
+        <p>MADE with 🖤 by Suman</p>
+    </footer>
 </body>
 </html>
