@@ -1,0 +1,11 @@
+{
+  "builds": [
+    {
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/dork", "dest": "/dork.py" }
+  ]
+}
